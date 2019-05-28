@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+		<link rel = "stylesheet" href = "../css/jquery.mobile-1.4.5.css">
+        <title>Form</title>
+		<script src = "../js/jquery.js"></script>
+	    <script src = "../js/jquery.mobile-1.4.5.js"></script>
+		
+		<script>
+			function Form(){
+				var date = $('[name="date"]').val();
+				var contact = $('[name="contact"]').val();
+				var spend = $('[name="spend"]').val();
+	
+				window.localStorage.setItem("date", date);
+				window.localStorage.setItem("contact", contact);
+				window.localStorage.setItem("spend", spend);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div data-role="page" id="pageone" data-theme="b">
+			<div data-role="header">
+				<h1>Insert Details</h1>
+			</div>
+			
+			<div data-role="main" class="ui-content">
+				<form>
+					<label>Clean Date</label>
+					<input name="date" type="datetime" placeholder="Date"/>
+					
+					<label>Emergency Contact</label>
+					<input name="contact" type="text" placeholder="Contact Number"/>
+					
+					<label>Daily Spend</label>
+					<input name="spend" type="text" placeholder="Amount Spend Daily"/>
+					<input type="submit" value="submit" onclick="Form()"/>
+				</form>
+			</div>
+			
+		</div>
+	</body>
+</html>

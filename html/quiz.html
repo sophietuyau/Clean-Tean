@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+	<link rel = "stylesheet" href = "../css/jquery.mobile-1.4.5.css">
+	<script src = "../js/jquery.js"></script>
+	<script src = "../js/jquery.mobile-1.4.5.js"></script>
+	<script type="text/javascript" src = "../js/quiz.js"></script>
+	
+	<script>
+	</script>
+</head>
+<body>
+	<div data-role="page" data-theme="b" id="page">
+		<div data-role="header"><h1>Quiz</h1></div>
+		
+		<div data-role="main" class="ui-content">
+			<div><h3>Question <span id="count"></span></h3></div>
+		
+			<div>
+				<div class="questions"></div>
+				<button name="button" id="a1" class="choices" ></button>
+				<button name="button" id="a2" class="choices"></button>
+				<button name="button" id="a3" class="choices"></button>
+			</div>
+			
+			<h1 id="score"></h1>
+			<p id="answer"></p>
+			<button id="next">Next</button>
+			<button id="start">Start</button>
+		</div>
+	</div>
+</body>
+</html>

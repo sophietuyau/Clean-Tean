@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+		<link rel = "stylesheet" href = "../css/jquery.mobile-1.4.5.css">
+        <title>Form</title>
+		<script src = "../js/jquery.js"></script>
+	    <script src = "../js/jquery.mobile-1.4.5.js"></script>
+		<script type="text/javascript" src="../js/statistics.js"></script>
+		<script type="text/javascript" src="../js/canvasjs.min.js"></script>
+		
+		<script>
+			window.onload = function () {
+				var chart = new CanvasJS.Chart("chartContainer", {
+					title: {
+						text: "Statistics"
+					},
+					axisX: {
+						valueFormatString: "Day 0"
+					},
+					axisY2: {
+						prefix: "Rs ",
+					},
+					toolTip: {
+						shared: true
+					},
+					legend: {
+						cursor: "pointer",
+						verticalAlign: "top",
+						horizontalAlign: "center",
+						dockInsidePlotArea: true,
+						itemclick: toogleDataSeries
+					},
+					data: [{
+						type:"line",
+						axisYType: "secondary",
+						name: "Amount Saved",
+						showInLegend: true,
+						markerSize: 0,
+						yValueFormatString: "Rs ##,###",
+						dataPoints: [
+							{x:1, y:250},
+							{x:2, y:500},
+							{x:3, y:750},
+							{x:4, y:1000},
+						]
+					}]
+				});
+				chart.render();
+				var $currentdate = new Date();
+				var $date = new Date (window.localStorage.getItem("date"));
+
+				var $current = $currentdate.getTime();
+				var $inputdate = $date.getTime();
+
+				var $difference = $current - $inputdate;
+				var $days = Math.floor($difference/1000/60/60/24);
+
+				var $spend = window.localStorage.getItem("spend");
+
+				function toogleDataSeries(e){
+					if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+						e.dataSeries.visible = false;
+					} else{
+						e.dataSeries.visible = true;
+					}
+					chart.render();
+				}
+			}
+		</script>
+	</head>
+	
+	</body>
+		<div data-role="page" data-theme="b" id="page">
+			<div data-role="header"><h1>Statistics</h1></div>
+		
+			<div data-role="main" class="ui-content">
+				
+				<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+				
+				<h1>Savings</h1>
+				
+				<p id="savings"></p>
+				
+				<script> 
+					var $currentdate = new Date();
+					var $date = new Date (window.localStorage.getItem("date"));
+					
+					var $current = $currentdate.getTime();
+					var $inputdate = $date.getTime();
+					
+					var $difference = $current - $inputdate;
+					var $days = Math.floor($difference/1000/60/60/24);
+					
+					var $spend = window.localStorage.getItem("spend");
+					var $savings = $days*$spend;
+					
+					$("#savings").append("<h3> Rs:" +$savings+ "</h3>")
+				</script>
+			</div>
+		</div>
+	</body>
+</html>	
